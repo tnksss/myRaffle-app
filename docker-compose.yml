@@ -10,6 +10,9 @@ services:
       - 9000:9000
     depends_on:
       - db
+    volumes:
+      - ./my-raffle:/var/www/html
+    user: "1000:1000"
 
   queue-worker:
     build:
@@ -21,6 +24,8 @@ services:
     depends_on:
       - db
     command: php artisan queue:work
+
+
   
   caddy:
     image: caddy:latest
